@@ -20,7 +20,7 @@ services:
   poc:
     image: scylla:1.0
     environment:
-      JAVA_TOOL_OPTIONS: "-Dpoc.service.host=scylla -Dpoc.service.corePoolSize=5 -Dpoc.service.maxPoolSize=10 -Djava.awt.headless=true -Xmx256m -Xss256k -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump.hprof -XX:+ExitOnOutOfMemoryError -Dlogging.level.ROOT=INFO -DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -DAsyncLogger.WaitStrategy=Timeout -Dlog4j2.enable.threadlocals=true -Dlog4j2.enable.direct.encoders=true -XX:CompileCommand=dontinline,org.apache.logging.log4j.core.async.perftest.NoOpIdleStrategy::idle"
+      JAVA_TOOL_OPTIONS: "-Dpoc.service.host=scylla -Dpoc.service.corePoolSize=5 -Dpoc.service.maxPoolSize=10 -Djava.awt.headless=true -Xmx256m -Xss256k -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump.hprof -XX:+ExitOnOutOfMemoryError -Dlogging.level.ROOT=INFO"
     ports:
       - "8080:8080"
     networks:
