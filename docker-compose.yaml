@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  node1:
+    image: scylladb/scylla:4.5.0
+    hostname: scylla
+    ports:
+      - "8000:8000"
+    command: --seeds scylla,scylla-1 --developer-mode 1 --alternator-port 8000  --alternator-write-isolation always_use_lwt  --experimental-features=alternator-streams
+    networks:
+      web:
+
+  node2:
+    image: scylladb/scylla:4.5.0
+    hostname: scylla-1
+    command: --seeds scylla,scylla-1 --developer-mode 1 --alternator-port 8000  --alternator-write-isolation always_use_lwt --experimental-features=alternator-streams
+    networks:
+      web:
+
+  poc:
+    image: scylla:1.0
+    environment:
+      JAVA_TOOL_OPTIONS: "-Dpoc.service.host=scylla -Dpoc.service.corePoolSize=5 -Dpoc.service.maxPoolSize=10 -Djava.awt.headless=true -Xmx256m -Xss256k -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump.hprof -XX:+ExitOnOutOfMemoryError -Dlogging.level.ROOT=INFO -DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -DAsyncLogger.WaitStrategy=Timeout -Dlog4j2.enable.threadlocals=true -Dlog4j2.enable.direct.encoders=true -XX:CompileCommand=dontinline,org.apache.logging.log4j.core.async.perftest.NoOpIdleStrategy::idle"
+    ports:
+      - "8080:8080"
+    networks:
+      web:
+
+networks:
+  web:
+    driver: bridge

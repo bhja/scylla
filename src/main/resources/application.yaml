@@ -1,0 +1,8 @@
+poc:
+  service:
+      host: 127.0.0.1
+logging:
+  level:
+    root: INFO
+  file:
+    path: logs
