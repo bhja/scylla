@@ -11,6 +11,7 @@ import com.amazonaws.services.dynamodbv2.document.*;
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 import com.amazonaws.services.dynamodbv2.model.*;
+import com.amazonaws.services.dynamodbv2.model.Record;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poc.scylla.model.DataRequest;
 import com.poc.scylla.model.InsertRequest;
@@ -205,8 +206,9 @@ public class ScyllaService {
                 int count=0;
                 long start= System.currentTimeMillis();
                 while (iterator.hasNext()) {
-                    iterator.next();
-                    count = count +1;
+                    Item item =iterator.next();
+                    count = count + 1;
+                    log.info(item.toString());
                 }
                 long end = System.currentTimeMillis();
                 results.add(Collections.singletonMap("total_count",""+count));
@@ -244,6 +246,7 @@ public class ScyllaService {
                             streamsClient.getShardIterator(getShardIteratorRequest);
                     String currentShardIter = getShardIteratorResult.getShardIterator();
                     int processedRecordCount = 0;
+                    //JUST HARDCODED 10. This is for the POC.
                     while (currentShardIter != null && processedRecordCount < 10) {
                         GetRecordsResult getRecordsResult = streamsClient.getRecords(new GetRecordsRequest()
                                 .withShardIterator(currentShardIter));
