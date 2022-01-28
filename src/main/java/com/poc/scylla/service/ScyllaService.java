@@ -101,7 +101,7 @@ public class ScyllaService {
             loadData(insertRequest);
 
     }
-    @Async
+
     protected void loadData(InsertRequest input){
         Table table ;
         if(input.isUseCluster()){
@@ -202,18 +202,16 @@ public class ScyllaService {
                 watch.start();
                 ItemCollection<QueryOutcome> items = table.query(spec);
                 Iterator<Item> iterator = items.iterator();
-                watch.stop();
                 int count=0;
-                long start= System.currentTimeMillis();
+
                 while (iterator.hasNext()) {
-                    Item item =iterator.next();
+                    Item item = iterator.next();
                     count = count + 1;
-                    log.info(item.toString());
+                    log.info("{}",item);
                 }
-                long end = System.currentTimeMillis();
+                watch.stop();
                 results.add(Collections.singletonMap("total_count",""+count));
-                results.add(Collections.singletonMap("db_time",watch.getTotalTimeMillis() + " ms/" +watch.getTotalTimeNanos() + " ns"));
-                results.add(Collections.singletonMap("time_taken",""+(end-start)/60000));
+                results.add(Collections.singletonMap("time_taken",watch.getTotalTimeMillis() + " ms/" +watch.getTotalTimeNanos() + " ns"));
                 log.info("Time taken to read the data  for id {} is {} nanosecs/{} ms ", request.getId(),watch.getTotalTimeNanos(),watch.getTotalTimeMillis());
             }catch (Exception e){
                 log.error("Could not fetch the data {} ",e.getMessage());
