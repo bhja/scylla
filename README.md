@@ -1,4 +1,4 @@
-# Running the code and some sample data.
+# Running the code and sample input.
 
 A simple java code using DynamoDB API but utilizing the alternator feature of Scylla DB.
 
