@@ -30,3 +30,5 @@ curl -X POST  -H"Content-Type: application/json;charset=UTF-8" -H"Accept: applic
 To print the streams data. 
 
 curl  "http://localhost:8080/data/streams?tableName=poc" 
+
+
