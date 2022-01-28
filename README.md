@@ -2,7 +2,7 @@
 
 Java code using DynamoDB API but utilizing the alternator feature of Scylla DB.
 
-Can be executed as a standalone node/as cluster.
+Can be executed as a standalone or multi node cluster.
 For a local executor set the developer mode to 1. Else set to 0 and execute the tests. 
 
 Sample json input for the load test using CURL 
