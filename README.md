@@ -24,6 +24,10 @@ To retrieve the time taken to fetch the data for given parition key.
 curl -X POST  -H"Content-Type: application/json;charset=UTF-8" -H"Accept: application/json;charset=UTF-8"  --data @./data.json "http://localhost:8080/data"
 
 {
-"tableName":"poc-1",
+"tableName":"poc",
  "id": 1
 }
+
+To print the streams data. 
+
+curl  "http://localhost:8080/data/streams?tableName=poc" 
