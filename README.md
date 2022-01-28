@@ -1,19 +1,29 @@
 # Getting Started
 
-### Reference Documentation
+A simple java code using DynamoDB API but utilizing the alternator feature of Scylla DB.
 
-For further reference, please consider the following sections:
+Can be executed as a standalone node/as cluster.
+For a local executor set the developer mode to 1. Else set to 0 and execute the tests. 
+The mount point for the scylla data folder should be XFS formatted.
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.6.3/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.6.3/maven-plugin/reference/html/#build-image)
-* [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/2.6.3/reference/htmlsingle/#production-ready)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.6.3/reference/htmlsingle/#boot-features-jpa-and-spring-data)
+Sample json input for the load test using CURL 
 
-### Guides
+curl -X POST  -H"Content-Type: application/json;charset=UTF-8" -H"Accept: application/json;charset=UTF-8"  --data @./input.json "http://localhost:8080/data/load"
 
-The following guides illustrate how to use some features concretely:
+{
+"tableName":"poc",
+"limit":50000, 
+"enableStream": true, <= Creates the CDC logs for equivalent.
+"useCluster":false, <= If set to true uses the AlternatorLoadBalancing API.              
+"id":1 <= If not set the partition key lies between 1 and 4. picked randomly.
+}
 
-* [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 
+To retrieve the time taken to fetch the data for given parition key.
+
+curl -X POST  -H"Content-Type: application/json;charset=UTF-8" -H"Accept: application/json;charset=UTF-8"  --data @./data.json "http://localhost:8080/data"
+
+{
+"tableName":"poc-1",
+ "id": 1
+}
