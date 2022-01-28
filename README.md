@@ -4,7 +4,6 @@ A simple java code using DynamoDB API but utilizing the alternator feature of Sc
 
 Can be executed as a standalone node/as cluster.
 For a local executor set the developer mode to 1. Else set to 0 and execute the tests. 
-The mount point for the scylla data folder should be XFS formatted.
 
 Sample json input for the load test using CURL 
 
