@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   node1:
-    image: scylladb/scylla:4.5.0
+    image: scylladb/scylla:4.5.3
     hostname: scylla
     ports:
       - "8000:8000"
@@ -11,7 +11,7 @@ services:
       web:
 
   node2:
-    image: scylladb/scylla:4.5.0
+    image: scylladb/scylla:4.5.3
     hostname: scylla-1
     command: --seeds scylla,scylla-1 --developer-mode 1 --alternator-port 8000  --alternator-write-isolation always_use_lwt --experimental-features=alternator-streams
     networks:
