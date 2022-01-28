@@ -1,6 +1,6 @@
 # Running the code and sample input.
 
-A simple java code using DynamoDB API but utilizing the alternator feature of Scylla DB.
+Java code using DynamoDB API but utilizing the alternator feature of Scylla DB.
 
 Can be executed as a standalone node/as cluster.
 For a local executor set the developer mode to 1. Else set to 0 and execute the tests. 
