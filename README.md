@@ -7,7 +7,9 @@ Java code using DynamoDB API but utilizing the alternator feature of Scylla DB.
 Can be executed as a standalone or multi node cluster.
 For a local executor set the developer mode to 1. Else set to 0 and execute the tests. 
 
-For EC2 create the directories corresponding the number of nodes created.
+Run the maven build and use the docker configuration for a multi node cluster setup.
+
+The tables are created and then loaded.
 
 Sample json input for the load test using CURL 
 
@@ -33,7 +35,7 @@ curl -X POST  -H"Content-Type: application/json;charset=UTF-8" -H"Accept: applic
  "id": 1
 }
 
-To print the streams data. This is only the logger and tweak this as per the test case if needed
+To look through the streams using the DynamoDB API. This is only the logger and tweak this as per the test case if needed
 
 curl  "http://localhost:8080/streams?tableName=poc&dbType=scylla" 
 
