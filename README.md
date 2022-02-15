@@ -14,7 +14,7 @@ curl -X POST  -H"Content-Type: application/json;charset=UTF-8" -H"Accept: applic
 {
 "tableName":"poc",
 "limit":50000, 
-"dyType": "scylla" , <= "scylla"/"dynamo"
+"dbType": "scylla" , <= "scylla"/"dynamo"
 "enableStream": true, <= Creates the CDC logs for equivalent.
 "useCluster":false, <= If set to true uses the AlternatorLoadBalancing API.              
 "id":1 <= If not set the partition key lies between 1 and 4. picked randomly.
@@ -27,7 +27,7 @@ curl -X POST  -H"Content-Type: application/json;charset=UTF-8" -H"Accept: applic
 
 {
 "tableName":"poc",
-"dyType": "scylla" , <= "scylla"/"dynamo"
+"dbType": "scylla" , <= "scylla"/"dynamo"
  "id": 1
 }
 
