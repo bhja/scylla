@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InsertRequest {
+    String dbType;
     String tableName;
     int limit;
     boolean enableStream;

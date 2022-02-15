@@ -1,8 +1,15 @@
 poc:
   service:
       host: 127.0.0.1
+scylladb:
+  poc:
+    aws:
+      accessKey:
+      secretKey:
+      region: us-east-1
 logging:
   level:
     root: INFO
   file:
     path: logs
+

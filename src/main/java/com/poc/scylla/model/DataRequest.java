@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DataRequest {
+    String dbType;
     String tableName;
     int limit;
     boolean useCluster;

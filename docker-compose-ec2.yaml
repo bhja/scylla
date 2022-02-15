@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+
+  node1:
+    image: scylladb/scylla:4.5.0
+    hostname: node
+    cap_add:
+      - SYS_NICE
+    volumes:
+      - /data/node1:/var/lib/scylla/data
+    ports:
+      - "8000:8000"
+    command: --seeds node1,node2 --developer-mode 0 --alternator-port 8000  --alternator-write-isolation always_use_lwt  --experimental-features=alternator-streams
+    networks:
+      web:
+
+  node2:
+    image: scylladb/scylla:4.5.0
+    hostname: node2
+    cap_add:
+      - SYS_NICE
+    volumes:
+      - /data/node2:/var/lib/scylla/data
+    command: --seeds node1,node2 --developer-mode 0 --alternator-port 8000  --alternator-write-isolation always_use_lwt --experimental-features=alternator-streams
+    networks:
+      web:
+
+  node3:
+    image: scylladb/scylla:4.5.0
+    hostname: node3
+    cap_add:
+      - SYS_NICE
+    volumes:
+      - /data/node3:/var/lib/scylla/data
+    command: --seeds node1,node2 --developer-mode 0 --alternator-port 8000  --alternator-write-isolation always_use_lwt --experimental-features=alternator-streams
+    networks:
+      web:
+  poc:
+    image: scylla:1.0
+    environment:
+      JAVA_TOOL_OPTIONS: "-Dpoc.service.host=scylla -Dpoc.service.corePoolSize=5 -Dpoc.service.maxPoolSize=10 -Djava.awt.headless=true -Xmx256m -Xss256k -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump.hprof -XX:+ExitOnOutOfMemoryError -Dlogging.level.ROOT=INFO"
+    ports:
+      - "8080:8080"
+    networks:
+      web:
+
+networks:
+  web:
+    driver: bridge
