@@ -42,7 +42,7 @@ public class Config {
     )
     {
         if(StringUtils.isNullOrEmpty(accessKey)){
-            accessKey = System.getenv("AWS_ACCESS_KEY");
+            accessKey = System.getenv("AWS_ACCESS_KEY_ID");
         }
         if(StringUtils.isNullOrEmpty(secretKey)){
             secretKey = System.getenv("AWS_SECRET_ACCESS_KEY");
