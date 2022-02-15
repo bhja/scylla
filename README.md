@@ -1,4 +1,6 @@
-# Running the code and sample input and is strictly a Proof of Concept setup for scylla with some performance checks.
+# Running the code and sample input .
+
+It is strictly a Proof of Concept setup for scylla using dynamo DB API with few performance validations.
 
 Java code using DynamoDB API but utilizing the alternator feature of Scylla DB.
 
